@@ -1,7 +1,7 @@
 // /* You can add global styles to this file, and also import other style files */
 
-// html, body { height: 100%; }
-// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 @import url('https://fonts.googleapis.com/css2?family=David+Libre&family=Josefin+Sans&display=swap');
@@ -333,25 +333,25 @@ figure img:hover,
     padding-right: 0;
 }
 
-.popular_post__img1 {
-    background-image: url('../assets/bg.png');
-    background-size: var(--bg-size);
-}
+// .popular_post__img1 {
+//     background-image: url('../assets/bg.png');
+//     background-size: var(--bg-size);
+// }
 
-.popular_post__img2 {
-    background-image: url('../assets/mz.jpg');
-    background-size: var(--bg-size);
-}
+// .popular_post__img2 {
+//     background-image: url('../assets/mz.jpg');
+//     background-size: var(--bg-size);
+// }
 
-.popular_post__img3 {
-    background-image: url('../assets/zb.jpg');
-    background-size: var(--bg-size);
-}
+// .popular_post__img3 {
+//     background-image: url('../assets/zb.jpg');
+//     background-size: var(--bg-size);
+// }
 
-.popular_post__img4 {
-    background-image: url('../assets/sj.jpg');
-    background-size: var(--bg-size);
-}
+// .popular_post__img4 {
+//     background-image: url('../assets/sj.jpg');
+//     background-size: var(--bg-size);
+// }
 
 /*blog tags start*/
 .tags_main {
@@ -397,7 +397,7 @@ figure img:hover,
 
 /*right Subscribe  style*/
 .right_sub__div #exampleFormControlInput1 {
-    padding: 1.5rem 1rem;
+    padding: 1rem 1rem;
     margin: 1.5rem 0;
 }
 
@@ -454,4 +454,10 @@ footer p {
         margin: 3rem 0;
     }
 
+}
+.form-control{
+    font-size: 1.5rem;
+}
+a{
+    font-size: 1.5rem;
 }

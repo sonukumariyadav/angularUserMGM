@@ -9,67 +9,72 @@ import Swal from "sweetalert2";
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  userupdate!:FormGroup
+  userupdate!: FormGroup
+  dataa: any;
 
-  constructor(private service:UsermgmService) { }
+  constructor(private service: UsermgmService) { }
 
-  userDeatilData:any
-  userdata:any
+  userDeatilData: any
+  userdata: any
   ngOnInit(): void {
     this.userDeatil();
-    this.userupdate =new FormGroup({
-      designation:new FormControl(),
-      phone:new FormControl(),
-      mobile:new FormControl(),
-      address:new FormControl(),
-      web:new FormControl(),
-      git:new FormControl(),
-      twitter:new FormControl(),
-      insta:new FormControl(),
-      facebook:new FormControl(),
+    this.userupdate = new FormGroup({
+      designation: new FormControl(),
+      phone: new FormControl(),
+      mobile: new FormControl(),
+      address: new FormControl(),
+      web: new FormControl(),
+      git: new FormControl(),
+      twitter: new FormControl(),
+      insta: new FormControl(),
+      facebook: new FormControl(),
+    })
+    this.viewSingleBlog()
+  }
+  userDeatil() {
+    this.service.userDetails().then((result) => {
+      result.subscribe((data) => {
+        this.userDeatilData = data
+        console.log("user details", this.userDeatilData);
 
+        if (this.userDeatilData.status == 200) {
+          this.userdata = this.userDeatilData.userDetils
+          this.userupdate.patchValue(this.userDeatilData.userDetils)
+        }
+        else {
+          alert('error');
+        }
+
+      })
     })
   }
-  userDeatil()
-  {
-  this.service.userDetails().then((result)=>{
-    result.subscribe((data)=>{
-       this.userDeatilData=data
-       console.log("user details",this.userDeatilData);
 
-       if(this.userDeatilData.status==200)
-       {
-         this.userdata=this.userDeatilData.userDetils
-         this.userupdate.patchValue(this.userDeatilData.userDetils)
-       }
-       else{
-        alert('error');
-       }
 
+  dataaa: any
+  userUpdate() {
+    const updatedData = this.userupdate.value;
+    console.log("value ", updatedData);
+    this.service.userProfileUpdate(updatedData).then((result) => {
+      result.subscribe((data) => {
+        console.log(data);
+        this.dataaa = data
+        if (this.dataaa.status == 200) {
+          Swal.fire({
+            icon: 'success',
+            text: this.dataaa.msg
+          })
+        }
+      })
     })
-  })
   }
 
-
-  dataaa:any
-  userUpdate()
-  {
- const updatedData= this.userupdate.value;
- console.log("value ",updatedData);
- this.service.userProfileUpdate(updatedData).then((result)=>{
-  result.subscribe((data)=>{
-    console.log(data);
-this.dataaa=data
-if(this.dataaa.status==200)
-{
-Swal.fire({
-  icon:'success',
-  text:this.dataaa.msg
-})
-}
-  })
- })
-
-  }
-
+  
+  viewSingleBlog(){
+    this.service.viewSingleBlg().then((result)=>{
+      result.subscribe((res:any)=>{
+        this.dataa=res.data
+        console.log("sonu",this.dataa)
+      })
+    })
+    }
 }
